@@ -12,7 +12,7 @@ Edit Challan
         <!-- Basic layout-->
         <div class="card">
             <div class="card-header header-elements-inline bg-dark">
-                <h5 class="card-title">Edit New Challan</h5>
+                <h5 class="card-title">Edit Challan (FIR#{{$challan->fir."/".$challan->dated->format('y')}} Dated:{{$challan->dated->format('d-m-Y')}} u/s {{$challan->under_section}} PS {{$challan->police_station}})</h5>
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
@@ -24,49 +24,55 @@ Edit Challan
             <div class="card-body">
                 <form   enctype="multipart/form-data">
                     <h4><b> Basic Information:</b></h4>
+                    <a href="{{asset($challan->image)}}" class="btn btn-info float-right" style="margin-right: 10px;"><i class="icon-eye"></i>View Challan Image</a>
+                    <a href="{{asset($challan->user_fir->image)}}" class="btn btn-primary float-right" style="margin-right: 10px;"><i class="icon-eye"></i>View Fir Image</a>
+                    <br>
                     <br>
                     <input type="hidden" value="{{@$challan->id}}" id="challan_id">
                     <div class="row">
-                        <div class="form-group col-2">
-                            <label class="form-label">FIR#</label>
-                            <input type="number" name="fir" placeholder="E.g.123" value="{{$challan->fir}}" class="form-control" min="1" minlength="1" max="1500" maxlength="4" readonly>                        
-                        </div>
-                        <div class="form-group col-2">
-                            <label class="form-label">Dated#</label>
-                            <input type="text" name="dated" class="daterange-single form-control pull-right" style="height: 35px; "
-                            value="{{ date('m/d/Y', strtotime(@$challan->dated))}}" readonly>
-                        </div>
-                        <div class="form-group col-2">
-                            <label class="form-label">Under Section</label>
-                            <input type="text" name="under_section" value="{{$challan->under_section}}" class="form-control" placeholder="E.g.302 PPC" readonly>                        
-                        </div>
-                        <div class="form-group col-3">
-                            <label class="form-label">Police Station</label>
-                            <input type="text" name="police_station" class="form-control" value="{{$challan->police_station}}" readonly>
-                        </div>   
-                        <div class="form-group col-3">
-                            <label class="form-label">I/O Name</label>
-                            <input type="text" name="i_o_name" value="{{@$challan->i_o_name}}" placeholder="E.g.Afzal ASI" class="form-control" readonly>                        
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="form-group col-4">
                             <label class="form-label">Road No#</label>
-                            <input type="text" name="road_no" value="{{@$challan->road_no}}" class="form-control" placeholder="Raid Number" readonly>                        
+                            <input type="text" name="road_no" value="{{@$challan->road_no}}" class="form-control" placeholder="Road Number" readonly>                        
                        </div>
-                       
+                       <div class="form-group col-4">
+                            <label class="form-label">Accussed Name</label>
+                            <input type="text" name="accused_name" value="{{@$challan->accused_name}}" class="form-control" placeholder="Raid Number">                        
+                    </div>
                        <div class="form-group col-4">
                             <label class="form-label">Nature of Report u/s 173</label>
                             <input type="text" value="{{@$challan->nature_of_challan}}" class="form-control" placeholder="Raid Number" readonly>                        
 
                         </div>
-                        <div class="form-group col-4">
-                            <label class="form-label">Challan Image </label>
-                            <br>
-                            <a href="{{asset($challan->image)}}" class="btn btn-info"><i class="icon-eye"></i>View Image</a>
-                        </div>
                     </div>
                 </form>
+                <br>
+                <h4><b> I/o Detail :</b></h4>
+                <br>
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>I/O Name</th>
+                                    <th>
+                                        Challan Created
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($challan->officers as $key => $officer)
+                                <tr>
+                                    <td>{{$key+1}}</td>
+                                    <td>{{$officer->name}}</td>
+                                    <td>{{$officer->created_at->format('d M,Y')}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
                 <h4><b> Challan Status :</b></h4>
                 <br>
                 <div class="row">
@@ -236,6 +242,11 @@ Edit Challan
                                         @endif
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td colspan="3" class="text-center">
+                                        {!! @$challan->objection !!}
+                                    </td>
+                                </tr>
                                 @endif
                                 <tr>
                                     <td>Date of receiving of Challan in Court</td>
@@ -278,10 +289,12 @@ Edit Challan
         if ($(this).is(':checked')) {
             $('#challan_passed').hide();
             $('#objection_raised').show();
+            $('#objection_text_area').show();
         }
         else {        
             $('#challan_passed').show();
             $('#objection_raised').hide();    
+            $('#objection_text_area').hide();    
         }
     });
     $(document).on('submit', '#challanSentToProsecutionDateModalForm', function (event) {

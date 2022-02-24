@@ -28,6 +28,14 @@ class Challan extends Model
         'challan_passed_date',
         'challan_resubmitted_after_defect_removals',
         'date_of_receiving_challan_in_court',
+        'judge_id',
+        'fir_id',
+        'accused_name',
+        'objection',
+        'date_of_decision',
+        'decision',
+        'judge_name',
+        'offence',
     ];
     protected $casts = [
         'dated' => 'date',
@@ -35,6 +43,7 @@ class Challan extends Model
         'objection_date' => 'date',
         'challan_passed_date' => 'date',
         'date_of_receiving_challan_in_court' => 'date',
+        'date_of_decision' => 'date',
     ];
     public function setImageAttribute($value){
         $this->attributes['image'] = ImageHelper::saveCImage($value,'/challan/');
@@ -43,7 +52,15 @@ class Challan extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+    public function user_fir()
+    {
+        return $this->belongsTo(FIR::class,'fir_id');
+    }
     public static function pending(){
         return (new static)::where('challan_prepare_within_14_days',1)->get();
+    }
+    public function officers()
+    {
+        return $this->hasMany(Officer::class);
     }
 }

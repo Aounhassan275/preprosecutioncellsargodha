@@ -26,29 +26,32 @@ Create New Challan
                     @csrf
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                     <div class="row">
-                        <div class="form-group col-2">
-                            <label class="form-label">FIR#</label>
-                            <input type="number" name="fir" placeholder="E.g.123" class="form-control" min="1" minlength="1" max="1500" maxlength="4" required>                        
-                        </div>
-                        <div class="form-group col-2">
-                            <label class="form-label">Dated#</label>
-                            <input type="date" name="dated" class="form-control pull-right">                        
-                        </div>
-                        <div class="form-group col-2">
-                            <label class="form-label">Under Section</label>
-                            <input type="text" name="under_section" class="form-control" placeholder="E.g.302 PPC" required>                        
-                        </div>
                         <div class="form-group col-3">
-                            <label class="form-label">Police Station</label>
-                            <input type="text" name="police_station" class="form-control" value="{{Auth::user()->posting}}" readonly>
-                        </div>   
+                            <label class="form-label">FIR#</label>
+                            <select data-placeholder="Enter 'as'" name="fir_id"  class="form-control select-minimum " required data-fouc>
+                                <option></option>
+                                <optgroup label="FIRS">
+                                    @foreach(Auth::user()->firs as $fir)
+                                    <option  value="{{$fir->id}}">{{$fir->fir."/".$fir->dated->format('y')}}</option>
+                                    @endforeach
+                                </optgroup>
+                            </select>                        
+                        </div> 
                         <div class="form-group col-3">
                             <label class="form-label">I/O Name</label>
                             <input type="text" name="i_o_name" placeholder="E.g.Afzal ASI" class="form-control" required>                        
+                        </div>  
+                        <div class="form-group col-3">
+                            <label class="form-label">Accused Name</label>
+                            <input type="text" name="accused_name" placeholder="Accused Name" class="form-control" required>                        
                         </div> 
+                        <div class="form-group col-3">
+                            <label class="form-label">Challan Image</label>
+                            <input type="file" name="image" class="form-control" required>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label class="form-label">I/O Contacted to Complainant</label>
                             <select name="i_o_contacted_to_complainant" class="form-control">
                                 <option selected disabled>Select</option>
@@ -57,7 +60,7 @@ Create New Challan
                             </select>
                             <br>
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label class="form-label">Whether Challan Prepared within 14 Days</label>
                             <select name="challan_prepare_within_14_days" class="form-control">
                                 <option selected disabled>Select</option>
@@ -65,11 +68,7 @@ Create New Challan
                                 <option value="0">No</option>
                             </select>
                         </div>
-                        <div class="form-group col-3">
-                            <label class="form-label">Challan Image</label>
-                            <input type="file" name="image" class="form-control">
-                        </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label class="form-label">Nature of Report u/s 173</label>
                             <select name="nature_of_challan" class="form-control">
                                 <option selected disabled>Select</option>

@@ -86,5 +86,14 @@ class UserSeeder extends Seeder
             [ 'name' => 'Tirkhanwala'],
             [ 'name' => 'Urban Area'],
         ]);
+        DB::table('offences')->insert([
+            [ 'name' => 'Murder'],
+            [ 'name' => 'Robbery'],
+            [ 'name' => 'Dacoity'],
+            [ 'name' => 'Kidnapping'],
+            [ 'name' => 'Theft'],
+            [ 'name' => 'Rape'],
+            [ 'name' => 'Others'],
+        ]);
     }
 }

@@ -23,6 +23,22 @@ DASHBOARD
 @section('contents')
 <div class="row">
   <div class="col-sm-4 col-xl-4">
+    <a href="{{route('user.fir.index')}}">
+    <div class="card card-body bg-teal-400 has-bg-image">
+          <div class="media">
+              <div class="media-body">
+                  <h3 class="mb-0">{{Auth::user()->firs()->count()}}</h3>
+                  <span class="text-uppercase font-size-xs">Total FIR</span>
+              </div>
+
+              <div class="ml-3 align-self-center">
+                  <i class="icon-users2 icon-3x opacity-75"></i>
+              </div>
+          </div>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-4 col-xl-4">
     <a href="{{route('user.challan.index')}}">
     <div class="card card-body bg-blue-400 has-bg-image">
           <div class="media">
@@ -55,14 +71,15 @@ DASHBOARD
       </div>
     </a>
   </div>
-
-  <div class="col-sm-4 col-xl-4">
+</div>
+<div class="row">
+  <div class="col-sm-6 col-xl-6">
     <a href="{{route('user.challan.in_process_challan')}}">
       <div class="card card-body bg-success-400 has-bg-image">
             <div class="media">
                 <div class="media-body ">
                     <h3 class="mb-0">{{Auth::user()->challans()->where('challan_prepare_within_14_days',1)->where('challan_receive_in_branch',0)->count()}}</h3>
-                    <span class="text-uppercase font-size-xs">Challan In Process in Pre-Prosecution Cell</span>
+                    <span class="text-uppercase font-size-xs">Challan In Process in Invesigation & Monitoring  Cell </span>
                 </div>
                 <div class="mr-3 align-self-center">
                   <i class="icon-lan icon-3x opacity-75"></i>
@@ -71,11 +88,7 @@ DASHBOARD
         </div>
     </a>
   </div>
-
-
-</div>
-<div class="row">
-  <div class="col-sm-4 col-xl-4">
+  <div class="col-sm-6 col-xl-6">
     <a href="{{route('user.challan.passed_challan')}}">
       <div class="card card-body bg-indigo-400 has-bg-image">
           <div class="media">
@@ -91,7 +104,10 @@ DASHBOARD
       </div>
     </a>
   </div>
-  <div class="col-sm-4 col-xl-4">
+</div>
+<div class="row">
+  
+  <div class="col-sm-6 col-xl-6">
     <a href="{{route('user.challan.objection_challan')}}">
       <div class="card card-body bg-violet-400 has-bg-image">
           <div class="media">
@@ -109,7 +125,7 @@ DASHBOARD
     </a>
   </div>
 
-  <div class="col-sm-4 col-xl-4">
+  <div class="col-sm-6 col-xl-6">
     <a href="{{route('user.challan.court')}}">
       <div class="card card-body bg-orange-400 has-bg-image">
           <div class="media">

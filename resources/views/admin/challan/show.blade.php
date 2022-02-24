@@ -3,7 +3,7 @@
 
 <div class="row mb-2 mb-xl-4">
     <div class="col-auto d-none d-sm-block">
-    <h3>USER DETAIL | Investigation & Monitoring Cell</h3>
+    <h3>USER DETAIL | Investigation & Monitoring Cell (FIR#{{$challan->fir."/".$challan->dated->format('y')}} Dated:{{$challan->dated->format('d-m-Y')}} u/s {{$challan->under_section}} PS {{$challan->police_station}})</h3>
     </div>
 </div>
 <div class="row">
@@ -22,6 +22,7 @@
                 </div>
                 <div>
                     <a class="btn btn-success btn-sm" href="#">{{$challan->nature_of_challan}}</a>
+                    <a class="btn btn-info btn-sm" href="{{asset($challan->user_fir->image)}}">View FIR</a>
                     <a class="btn btn-danger btn-sm" href="#">
                         @if($challan->challan_passed_date)
                         Passed
@@ -160,47 +161,55 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-2">
-                                <label class="form-label">FIR#</label>
-                                <input type="number" name="fir" placeholder="E.g.123" readonly value="{{$challan->fir}}" class="form-control" min="1" minlength="1" max="1500" maxlength="4" required>                        
-                            </div>
-                            <div class="form-group col-2">
-                                <label class="form-label">Dated#</label>
-                                <input type="text" name="dated" readonly class="daterange-single form-control pull-right" style="height: 35px; "
-                                value="{{ date('m/d/Y', strtotime(@$challan->dated))}}">
-                            </div>
-                            <div class="form-group col-2">
-                                <label class="form-label">Under Section</label>
-                                <input type="text" name="under_section" readonly value="{{$challan->under_section}}" class="form-control" placeholder="E.g.302 PPC" required>                        
-                            </div>
-                            <div class="form-group col-3">
-                                <label class="form-label">Police Station</label>
-                                <input type="text" readonly name="police_station" class="form-control" value="{{$challan->police_station}}" readonly>
-                            </div>   
-                            <div class="form-group col-3">
-                                <label class="form-label">I/O Name</label>
-                                <input type="text" readonly name="i_o_name" value="{{@$challan->i_o_name}}" placeholder="E.g.Afzal ASI" class="form-control" required>                        
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-3">
+                            <div class="form-group col-4">
                                 <label class="form-label">Road No#</label>
                                 <input type="text" name="road_no" value="{{@$challan->road_no}}" class="form-control" readonly >                        
                            </div>
-                           <div class="form-group col-3">
+                           <div class="form-group col-4">
                                 <label class="form-label">Nature of Report u/s 173</label>
                                 <input type="text" name="road_no" value="{{@$challan->nature_of_challan}}" readonly class="form-control" > 
                             </div>
-                            <div class="form-group col-3">
+                            <div class="form-group col-4">
                                 <label class="form-label">Prosecutor Name</label>
                                 <input type="text" name="road_no" value="{{@$challan->prosecutor_name}}" readonly class="form-control" > 
                             </div>
-                           <div class="form-group col-3">
+                        
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label class="form-label">Accussed Name</label>
+                                <input type="text" name="accussed_name" value="{{@$challan->accused_name}}" class="form-control" readonly >                        
+                           </div>
+                           
+                           <div class="form-group col-4">
                                 <label class="form-label">Challan Image </label>
                                 <br>
                                 <a href="{{asset($challan->image)}}" class="btn btn-info" style="color:white;"><i class="feather text-info" style="color:white;" data-feather="eye"></i>View </a>
                             </div>
                         
+                        </div>
+                        <div class="table-responsive">
+                            <table id="datatables-buttons" class="table table-striped">
+                                <thead>
+                                    <tr >
+                                        <th>#</th>
+                                        <th>I/O Name</th>
+                                        <th>
+                                            Challan Created
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($challan->officers as $key => $officer)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$officer->name}}</td>
+                                        <td>{{$officer->created_at->format('d M,Y')}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -268,7 +277,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            </div>
+                        </div>
 
                     </div>
                 </div>

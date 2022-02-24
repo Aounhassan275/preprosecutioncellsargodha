@@ -31,11 +31,11 @@ CHALLAN
                     <div class="row">
                         <div class="form-group col-3">
                             <label class="form-label">FIR#</label>
-                            <input type="number" name="fir" value="{{@$data['fir']}}"  placeholder="E.g.123"  class="form-control" min="1" minlength="1" max="1500" maxlength="4" required>                        
+                            <input type="number" name="fir" value="{{@$data['fir']}}"  placeholder="E.g.123"  class="form-control" min="1" minlength="1" max="1500" maxlength="4" >                        
                         </div>
                         <div class="form-group col-3">
                             <label class="form-label">Year</label>  
-                            <select data-placeholder="Enter 'as'" name="dated"  class="form-control select-minimum " required data-fouc>
+                            <select data-placeholder="Enter 'as'" name="dated"  class="form-control select-minimum "  data-fouc>
                                 <option></option>
                                 <optgroup label="Years">
                                     @foreach($years as $year)
@@ -46,11 +46,11 @@ CHALLAN
                         </div>
                         <div class="form-group col-3">
                             <label class="form-label">Under Section</label>
-                            <input type="text" name="under_section" value="{{@$data['under_section']}}" class="form-control" placeholder="E.g.302 PPC" required>                        
+                            <input type="text" name="under_section" value="{{@$data['under_section']}}" class="form-control" placeholder="E.g.302 PPC" >                        
                         </div>
                         <div class="form-group col-3">
                             <label class="form-label">Police Station</label>
-                            <select data-placeholder="Enter 'as'" name="police_station"  class="form-control select-minimum " required data-fouc>
+                            <select data-placeholder="Enter 'as'" name="police_station"  class="form-control select-minimum "  data-fouc>
                                 <option></option>
                                 <optgroup label="Police Station">
                                     @foreach(App\Models\PoliceStation::all() as $police_station)

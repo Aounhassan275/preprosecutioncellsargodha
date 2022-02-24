@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="form-group col-md-6" @if($challan->objection_date && $challan->challan_passed_date == null) style="display:none;" @endif id="challan_passed">
                             <label for="title">Challan Passed</label>
-                            <input type="text" name="challan_passed_date" class="daterange-single form-control "
+                            <input type="date" name="challan_passed_date" class="form-control "
                                 @if($challan->challan_passed_date)
                                 value="{{ date('m/d/Y', strtotime(@$challan->challan_passed_date))}}"
                                 @endif
@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group col-md-6" id="objection_raised" @if(!$challan->objection_date  || $challan->challan_passed_date != null) style="display:none;"@endif>
                             <label for="title">Objection Raised</label>
-                            <input type="text" name="objection_date" class="daterange-single form-control "
+                            <input type="date" name="objection_date" class="form-control "
                                 @if($challan->objection_date)
                                 value="{{ date('m/d/Y', strtotime(@$challan->objection_date))}}"
                                 @endif
@@ -33,6 +33,12 @@
                             <label for="title">Prosecutor Name</label>
                             <input type="text" name="prosecutor_name" value="{{@$challan->prosecutor_name}}" class="form-control " required>
                         
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12" id="objection_text_area" @if(!$challan->objection_date  || $challan->challan_passed_date != null) style="display:none;"@endif>
+                            <label for="title">Objection</label>
+                            <textarea name="objection_text" class="form-control" required>{{@$challan->objection}}</textarea>
                         </div>
                     </div>
                     <p id="errors" style="color:red;"></p>

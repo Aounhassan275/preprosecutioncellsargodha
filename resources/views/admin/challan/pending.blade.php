@@ -17,11 +17,11 @@
                     <div class="row">
                         <div class="form-group col-3">
                             <label class="form-label">FIR#</label>
-                            <input type="number" name="fir" value="{{@$data['fir']}}"  placeholder="E.g.123"  class="form-control" min="1" minlength="1" max="1500" maxlength="4" required>                        
+                            <input type="number" name="fir" value="{{@$data['fir']}}"  placeholder="E.g.123"  class="form-control" min="1" minlength="1" max="1500" maxlength="4">                        
                         </div>
                         <div class="form-group col-3">
                             <label class="form-label">Year</label>  
-                            <select name="dated" class="form-control select2" required>
+                            <select name="dated" class="form-control select2">
                                 <option selected disabled>Select</option>
                                 @foreach($years as $year)
                                 <option @if(@$data['dated'] && @$data['dated'] == $year) selected @endif value="{{$year}}">{{$year}}</option>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group col-3">
                             <label class="form-label">Under Section</label>
-                            <input type="text" name="under_section" value="{{@$data['under_section']}}" class="form-control" placeholder="E.g.302 PPC" required>                        
+                            <input type="text" name="under_section" value="{{@$data['under_section']}}" class="form-control" placeholder="E.g.302 PPC">                        
                         </div>
                         <div class="form-group col-3">
                             <label class="form-label">Police Station</label>

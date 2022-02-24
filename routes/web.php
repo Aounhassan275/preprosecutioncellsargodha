@@ -73,7 +73,10 @@ Route::group(['as'=>'user.','prefix' => 'user','namespace' => 'User'], function 
         /*******************Dashoard ROUTES*************/
         Route::get('dashboard', 'UserController@dashboard')->name('dashboard.index');
        /******************USER PROFILE  ROUTES****************/
-       Route::resource('user', 'UserController');  
+       Route::resource('user', 'UserController'); 
+        /******************FIR ROUTES****************/ 
+       Route::resource('fir', 'FIRController');  
+
        /******************CHALLAN ROUTES****************/
        Route::get('i_o_contacted_to_complainant/pending/{id}','ChallanController@i_o_contacted_to_complainant_pending')->name('i_o_contacted_to_complainant.pending');
        Route::get('i_o_contacted_to_complainant/active/{id}','ChallanController@i_o_contacted_to_complainant_active')->name('i_o_contacted_to_complainant.active');

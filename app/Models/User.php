@@ -69,4 +69,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Challan::class);
     }
+    public function firs()
+    {
+        return $this->hasMany(FIR::class);
+    }
 }

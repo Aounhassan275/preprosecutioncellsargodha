@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="title">Date</label>
-                        <input type="text" name="interim_sent_to_prosecution_department_date" class="daterange-single form-control "
+                        <input type="date" name="interim_sent_to_prosecution_department_date" class=" form-control "
                             @if($challan->interim_sent_to_prosecution_department_date)
                             value="{{ date('m/d/Y', strtotime(@$challan->interim_sent_to_prosecution_department_date))}}"
                             @endif

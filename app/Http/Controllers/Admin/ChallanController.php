@@ -34,12 +34,12 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
-                        ->whereYear('dated',$request->dated)
+            $challans = Challan::whereYear('dated',$request->dated)
+                        ->where('fir',$request->fir)
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -53,19 +53,20 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::where('challan_prepare_within_14_days',1)
                         ->whereYear('dated',$request->dated)
-                        ->where('challan_prepare_within_14_days',1)
+                        ->orWhere('fir',$request->fir)
                         ->where('challan_receive_in_branch',0)
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
             $data['police_station'] = $request->police_station;
-        }else{
+        }
+        else{
             $challans = Challan::where('challan_prepare_within_14_days',1)
             ->where('challan_receive_in_branch',0)->get();
         }
@@ -75,14 +76,14 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::whereNull('date_of_receiving_challan_in_court')
                         ->whereYear('dated',$request->dated)
-                        ->whereNull('date_of_receiving_challan_in_court')
+                        ->orWhere('fir',$request->fir)
                         ->whereNotNull('challan_passed_date')
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -97,14 +98,14 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::where('file_send_after_3_days',1)
                         ->whereYear('dated',$request->dated)
-                        ->where('file_send_after_3_days',1)
+                        ->orWhere('fir',$request->fir)
                         ->whereNull('challan_passed_date')->whereNull('objection_date')
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -119,13 +120,13 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::whereNotNull('challan_passed_date')
+                        ->orWhere('fir',$request->fir)
                         ->whereYear('dated',$request->dated)
-                        ->whereNotNull('challan_passed_date')
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -139,13 +140,13 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::where('challan_prepare_within_14_days',0)
+                        ->orWhere('fir',$request->fir)
                         ->whereYear('dated',$request->dated)
-                        ->where('challan_prepare_within_14_days',0)
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -159,13 +160,13 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::where('i_o_contacted_to_complainant',0)
+                        ->orWhere('fir',$request->fir)
                         ->whereYear('dated',$request->dated)
-                        ->where('i_o_contacted_to_complainant',0)
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -179,13 +180,13 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::where('challan_interim_report_within_14_days',0)
+                        ->orWhere('fir',$request->fir)
                         ->whereYear('dated',$request->dated)
-                        ->where('challan_interim_report_within_14_days',0)
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -199,13 +200,13 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::whereNotNull('objection_date')->whereNull('challan_passed_date')
+                        ->orWhere('fir',$request->fir)
                         ->whereYear('dated',$request->dated)
-                        ->whereNotNull('objection_date')->whereNull('challan_passed_date')
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -220,13 +221,13 @@ class ChallanController extends Controller
     {
         $data = [];
         $years = Helpers::years();
-        if($request->fir)
+        if($request->fir || $request->dated || $request->under_section || $request->police_station)
         {
-            $challans = Challan::where('fir',$request->fir)
+            $challans = Challan::whereNotNull('date_of_receiving_challan_in_court')
                         ->whereYear('dated',$request->dated)
-                        ->whereNotNull('date_of_receiving_challan_in_court')
+                        ->orWhere('fir',$request->fir)
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orWhere('police_station',$request->police_station)->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -320,6 +321,7 @@ class ChallanController extends Controller
     public function file_send_after_3_days_active($id)
     {
         $challan = Challan::find($id);
+        
         $challan->update([
             'file_send_after_3_days' => true
         ]);
