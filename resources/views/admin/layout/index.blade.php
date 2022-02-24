@@ -5,9 +5,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1,">
-    <meta name="description" content="PRE-PROSECUTION BRANCH">
+    <meta name="description" content="Investigation & Monitoring Cell">
 	<meta name="author" content="Bootlab">
-    <title>ADMIN PANEL | PRE-PROSECUTION BRANCH</title> 
+    <title>ADMIN PANEL | Investigation & Monitoring Cell</title> 
 	<link rel="shortcut icon" type="image/png" href="{{asset('front/image/favicon.png')}}">	
 
 	<link rel="preconnect" href="{{asset('//fonts.gstatic.com/')}}" crossorigin="">
@@ -35,7 +35,7 @@
 			<div class="sidebar-content ">
 				<a class="sidebar-brand" href="{{url('/')}}">
           			<i class="align-middle" data-feather="box"></i>
-          			<span class="align-middle"> PRE-PROSECUTION BRANCH</span>
+          			<span class="align-middle"> Investigation & Monitoring Cell</span>
         		</a>
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
@@ -73,7 +73,7 @@
 					<div class="media">
 						<img class="rounded-circle mr-3" src="{{asset('img\avatars\avatar.jpg')}}" alt="Chris Wood" width="40" height="40">
 						<div class="media-body">
-							<h5 class="mb-1"> PRE-PROSECUTION BRANCH</h5>
+							<h5 class="mb-1"> Investigation & Monitoring Cell</h5>
 							<div>
 								<i class="fas fa-circle text-success"></i> Online
 							</div>

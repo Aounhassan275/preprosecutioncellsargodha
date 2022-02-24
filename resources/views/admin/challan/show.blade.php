@@ -3,7 +3,7 @@
 
 <div class="row mb-2 mb-xl-4">
     <div class="col-auto d-none d-sm-block">
-    <h3>USER DETAIL | PRE-PROSECUTION BRANCH</h3>
+    <h3>USER DETAIL | Investigation & Monitoring Cell</h3>
     </div>
 </div>
 <div class="row">
@@ -112,7 +112,7 @@
                                         </th>
                                     </tr>
                                     <tr class="border-bottom-info">
-                                        <th>File Sent to Pre-Prosecution Branch After 3 days of Reg. of FIR</th>
+                                        <th>File Sent to Investigation & Monitoring Cell After 3 days of Reg. of FIR</th>
                                         <th>
                                             @if($challan->file_send_after_3_days)
                                                 <span class="badge badge-success">Yes</span>  
@@ -221,8 +221,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>When Challan / Interim Sent to Prosecution Department</td>
+                                    <tr>                                       
+                                        <td>When Challan/Interim Received By Prosecution Dept.</td>
                                         <td>
                                             @if($challan->interim_sent_to_prosecution_department_date)
                                             {{$challan->interim_sent_to_prosecution_department_date->format('M d,Y')}}

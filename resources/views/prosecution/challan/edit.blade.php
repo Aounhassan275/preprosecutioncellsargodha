@@ -135,7 +135,7 @@ Edit Challan
                                     </th>
                                 </tr>
                                 <tr class="border-bottom-info">
-                                    <th>File Sent to Pre-Prosecution Branch After 3 days of Reg. of FIR</th>
+                                    <th>File Sent to Investigation & Monitoring Cell After 3 days of Reg. of FIR</th>
                                     <th>
                                         @if($challan->file_send_after_3_days)
                                             <span class="badge badge-success">Yes</span>  
@@ -179,7 +179,7 @@ Edit Challan
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>When Challan / Interim Sent to Prosecution Department</td>
+                                    <td>When Challan / Interim Received By Prosecution Branch</td>
                                     <td>
                                         @if($challan->interim_sent_to_prosecution_department_date)
                                         {{$challan->interim_sent_to_prosecution_department_date->format('M d,Y')}}

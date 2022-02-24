@@ -3,7 +3,7 @@
 
 <div class="row mb-2 mb-xl-4">
     <div class="col-auto d-none d-sm-block">
-    <h3>DASHBOARD | PRE-PROSECUTION BRANCH</h3>
+    <h3>DASHBOARD | Investigation & Monitoring Cell</h3>
     </div>
 </div>
 <div class="row">

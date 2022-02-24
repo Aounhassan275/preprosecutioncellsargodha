@@ -3,7 +3,7 @@
 
 <div class="row mb-2 mb-xl-4">
     <div class="col-auto d-none d-sm-block">
-    <h3>VIEW CHALLAN PASSED BY PROSECUTION BRANCH | PRE-PROSECUTION BRANCH</h3>
+    <h3>VIEW CHALLAN PASSED BY PROSECUTION BRANCH | Investigation & Monitoring Cell</h3>
     </div>
 </div>
 <div class="row">
@@ -71,9 +71,9 @@
                         <th style="width:auto;">If Challan not prepared within 14 days,whether Interim report prepared wihtin next 3 days</th>
                         <th style="width:auto;">Nature Of Report u/s 173</th>
                         <th style="width:auto;">Whether Challan Prepared Within 14 Days</th>
-                        <th style="width:auto;">File Sent to Pre-Prosecution Branch after 3 days of Reg. of FIR</th>
+                        <th style="width:auto;">File Sent to Investigation & Monitoring Cell after 3 days of Reg. of FIR</th>
                         <th style="width:auto;">Whether Report u/s 173 Crpc is Received at Pre-Prosecution Cell</th>
-                        <th style="width:auto;">When Challan/Interim Sent to Prosecution Dept.</th>
+                        <th style="width:auto;">When Challan/Interim Received By Prosecution Dept.</th>
                         <th style="width:auto;">Challan Status</th>
                         <th style="width:auto;">Date of Receiving of reports u/sec 173 crpc</th>
                         <th style="width:auto;">View</th>

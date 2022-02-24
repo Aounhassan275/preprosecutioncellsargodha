@@ -90,9 +90,9 @@ CHALLAN
                 <th>If Challan not prepared within 14 days,whether Interim report prepared wihtin next 3 days</th>
                 <th>Nature Of Report u/s 173</th>
                 <th>Whether Challan Prepared Within 14 Days</th>
-                <th>File Sent to Pre-Prosecution Branch after 3 days of Reg. of FIR</th>
+                <th>File Sent to Investigation & Monitoring Cell after 3 days of Reg. of FIR</th>
                 <th>Whether Report u/s 173 Crpc is Received at Pre-Prosecution Cell</th>
-                <th>When Challan/Interim Sent to Prosecution Dept.</th>
+                <th>When Challan/Interim Received By Prosecution Branch</th>
                 <th>Challan Status</th>
                 <th>Date of Receiving of reports u/sec 173 crpc</th>
                 <th>View</th>

@@ -5,11 +5,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="PRE-PROSECUTION BRANCH">
+    <meta name="description" content="Investigation & Monitoring Cell">
 	<meta name="author" content="Bootlab">
 
 
-    <title>SIGN IN | PRE-PROSECUTION BRANCH</title>   
+    <title>SIGN IN | Investigation & Monitoring Cell</title>   
 
 	<link rel="preconnect" href="{{asset('//fonts.gstatic.com/')}}'" crossorigin="">
 
@@ -49,7 +49,7 @@
                     <div class="d-table-cell align-middle">
     
                         <div class="text-center mt-4">
-                            <h1 class="h2">Welcome back, PRE-PROSECUTION BRANCH</h1>
+                            <h1 class="h2">Welcome back, Investigation & Monitoring Cell</h1>
                             <p class="lead">
                                 Sign in to your account to continue
                             </p>
