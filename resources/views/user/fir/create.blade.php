@@ -39,7 +39,7 @@ Create New FIR
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
                             <label class="form-label">Offence</label>
                             <select data-placeholder="Enter 'as'" name="offence"  class="form-control select-minimum " required data-fouc>
                                 <option></option>
@@ -50,13 +50,17 @@ Create New FIR
                                 </optgroup>
                             </select>
                         </div> 
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
                             <label class="form-label">Police Station</label>
                             <input type="text" name="police_station" class="form-control" value="{{Auth::user()->posting}}" readonly>
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col-3">
                             <label class="form-label">Image</label>
                             <input type="file" name="image" class="form-control"  required>
+                        </div>
+                        <div class="form-group col-3">
+                            <label class="form-label">I/O name</label>
+                            <input type="text" name="i_o_name" class="form-control"placeholder="E.g.Afzal ASI" required>
                         </div>
                     </div>
                     <div class="row float-right" >

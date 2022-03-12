@@ -20,7 +20,7 @@ class CreateChallansTable extends Migration
             $table->string('under_section');
             $table->string('police_station');
             $table->string('offence');
-            $table->string('i_o_name');
+            // $table->string('i_o_name');
             $table->boolean('i_o_contacted_to_complainant')->default(0)->nullable();
             $table->boolean('challan_prepare_within_14_days')->default(0)->nullable();
             $table->string('image')->nullable();

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Challan;
 use App\Models\FIR;
+use App\Models\Officer;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -47,9 +49,22 @@ class FIRController extends Controller
      */
     public function store(Request $request)
     {
-        FIR::create($request->all());
+        $fir = FIR::create($request->except('i_o_name'));
+        $challan = Challan::create([
+            'fir' => $fir->fir,
+            'dated' => $fir->dated,
+            'under_section' => $fir->under_section,
+            'offence' => $fir->offence,
+            'police_station' => $fir->police_station,
+            'fir_id' => $fir->id,
+            'user_id' => Auth::user()->id,
+        ]);
+        Officer::create([
+            'name' => $request->i_o_name,
+            'challan_id' => $challan->id,
+           ]);
         toastr()->success('FIR is Created Successfully');
-        return redirect()->route('user.fir.index');
+        return redirect()->route('user.challan.edit',$challan->id);
     }
 
     /**

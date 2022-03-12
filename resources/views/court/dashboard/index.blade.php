@@ -1,4 +1,4 @@
-@extends('user.layout.index')
+@extends('court.layout.index')
 
 @section('title')
 

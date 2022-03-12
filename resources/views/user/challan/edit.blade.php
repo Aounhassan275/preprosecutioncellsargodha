@@ -254,6 +254,30 @@ Edit Challan
                         </table>
                     </div>
                 </div>
+                <br>
+                <h4><b> Court Level Information:</b></h4>
+                <br>
+                <div class="row">
+                    <div class="form-group col-3">
+                        <label class="form-label">Judge Name#</label>
+                        <select data-placeholder="Enter 'as'" class="form-control select-minimum ">
+                            <option></option>
+                            <optgroup label="Judge Name">
+                                @foreach(App\Models\Judges::all() as $judge)
+                                <option @if($challan->judge_id == $judge->id) selected @endif value="{{$judge->id}}">{{$judge->name}}</option>
+                                @endforeach
+                            </optgroup>
+                        </select>
+                   </div>
+                   <div class="form-group col-3">
+                        <label class="form-label">Date of Decision </label>
+                        <input type="text"  class="form-control" value="{{@$challan->date_of_decision?$challan->date_of_decision->format('d M,Y'):''}}">
+                    </div>
+                   <div class="form-group col-6">
+                        <label class="form-label">Decision </label>
+                        <input type="text"class="form-control" placeholder="Decision" value="{{@$challan->decision}}">
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /basic layout -->

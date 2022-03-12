@@ -150,14 +150,18 @@
 								<span>Dashboard</span>
 							</a>
 						</li>
-						<li class="nav-item nav-item-submenu {{Request::is('user/challan*')?'nav-item-open':''}}">
-							<a href="#" class="nav-link"><i class="icon-book"></i> <span>Challan</span></a>
-
-							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="{{Request::is('user/challan*')?'display:block':''}}">
-								<li class="nav-item"><a href="{{route('user.challan.create')}}" class="nav-link {{Request::is('user/challan/create')?'active':''}}">Create</a></li>
-								<li class="nav-item"><a href="{{route('user.challan.index')}}" class="nav-link {{Request::is('user/challan')?'active':''}}">All Challans</a></li>
-							</ul>
-						</li>
+						<li class="nav-item">
+							<a href="{{route('user.challan.index')}}" class="nav-link {{Request::is('user/challan*')?'active':''}}">
+								<i class="icon-book"></i>
+								<span>Challan</span>
+							</a>
+						</li>	
+						<li class="nav-item">
+							<a href="{{route('user.judges.index')}}" class="nav-link {{Request::is('user/judges')?'active':''}}">
+								<i class="icon-tab"></i>
+								<span>Judges</span>
+							</a>
+						</li>	
 						<li class="nav-item">
 							<a href="{{route('user.user.index')}}" class="nav-link {{Request::is('user/transcation')?'active':''}}">
 								<i class="icon-tab"></i>

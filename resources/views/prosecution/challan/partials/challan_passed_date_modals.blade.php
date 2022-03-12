@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="form-group col-md-12" id="objection_text_area" @if(!$challan->objection_date  || $challan->challan_passed_date != null) style="display:none;"@endif>
                             <label for="title">Objection</label>
-                            <textarea name="objection_text" class="form-control" required>{{@$challan->objection}}</textarea>
+                            <textarea name="objection_text" class="form-control">{{@$challan->objection}}</textarea>
                         </div>
                     </div>
                     <p id="errors" style="color:red;"></p>

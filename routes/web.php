@@ -76,6 +76,8 @@ Route::group(['as'=>'user.','prefix' => 'user','namespace' => 'User'], function 
        Route::resource('user', 'UserController'); 
         /******************FIR ROUTES****************/ 
        Route::resource('fir', 'FIRController');  
+        /******************JUDGES ROUTES****************/ 
+       Route::resource('judges', 'JudgesController');  
 
        /******************CHALLAN ROUTES****************/
        Route::get('i_o_contacted_to_complainant/pending/{id}','ChallanController@i_o_contacted_to_complainant_pending')->name('i_o_contacted_to_complainant.pending');
@@ -108,8 +110,8 @@ Route::get('/', 'User\AuthController@index');
 /******************FUNCTIONALITY ROUTES****************/
 Route::get('/cd', function() {
     Artisan::call('config:cache');
-    // Artisan::call('migrate:refresh');
-    // Artisan::call('db:seed', [ '--class' => DatabaseSeeder::class]);
+    Artisan::call('migrate:refresh');
+    Artisan::call('db:seed', [ '--class' => DatabaseSeeder::class]);
     Artisan::call('view:clear');
     return 'DONE';
 });

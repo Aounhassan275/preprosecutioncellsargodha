@@ -43,7 +43,7 @@ class JudgesController extends Controller
     {
         Judges::create($request->all());
         toastr()->success('Judge Created Successfully');
-        return redirect()->route('user.judge.index');
+        return redirect()->route('user.judges.index');
     }
 
     /**
@@ -81,9 +81,12 @@ class JudgesController extends Controller
      * @param  \App\Models\Judges  $judges
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Judges $judges)
+    public function update(Request $request,$id)
     {
-        //
+        $judge = Judges::find($id);
+        $judge->update($request->all());
+        toastr()->success('Judges Informations Updated successfully');
+        return redirect()->back();
     }
 
     /**
@@ -92,8 +95,11 @@ class JudgesController extends Controller
      * @param  \App\Models\Judges  $judges
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Judges $judges)
+    public function destroy($id)
     {
-        //
+        $judge = Judges::find($id);
+        $judge->delete();
+        toastr()->success('Judge Informations Deleted successfully');
+        return redirect()->back();
     }
 }

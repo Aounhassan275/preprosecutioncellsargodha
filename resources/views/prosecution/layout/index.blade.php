@@ -156,6 +156,14 @@
 								<span>Challan</span>
 							</a>
 						</li>	
+						@if(Auth::user()->type == 'Court')
+						<li class="nav-item">
+							<a href="{{route('user.judges.index')}}" class="nav-link {{Request::is('user/judges')?'active':''}}">
+								<i class="icon-tab"></i>
+								<span>Judges</span>
+							</a>
+						</li>	
+						@endif
 						<li class="nav-item">
 							<a href="{{route('user.user.index')}}" class="nav-link {{Request::is('user/transcation')?'active':''}}">
 								<i class="icon-tab"></i>

@@ -390,14 +390,20 @@ class ChallanController extends Controller
     public function update(Request $request, $id)
     {
         $challan = Challan::find($id);
-        if($request->image)
+        if(Auth::user()->type == "Police Station")
         {
-            $challan->update([
-               'image' => $request->image 
-            ]);
+            if($request->image)
+                {
+                    $challan->update([
+                    'image' => $request->image 
+                    ]);
+                }
+                $challan->update($request->only('fir','dated','under_section','i_o_name','road_no','nature_of_challan'));
         }
-        $challan->update($request->only('fir','dated','under_section','i_o_name','road_no','nature_of_challan'));
-        toastr()->success('Challan Informations Updated successfully');
+        else{
+            $challan->update($request->only('judge_id','date_of_decision','decision'));   
+        }
+            toastr()->success('Challan Informations Updated successfully');
         return redirect()->back();
     }
 

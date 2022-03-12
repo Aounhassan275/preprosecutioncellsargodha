@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <a class="btn btn-success btn-sm" href="#">{{$challan->nature_of_challan}}</a>
-                    <a class="btn btn-info btn-sm" href="{{asset($challan->user_fir->image)}}">View FIR</a>
+                    <a class="btn btn-info btn-sm" href="{{asset(@$challan->user_fir->image)}}">View FIR</a>
                     <a class="btn btn-danger btn-sm" href="#">
                         @if($challan->challan_passed_date)
                         Passed
