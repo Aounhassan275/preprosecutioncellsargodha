@@ -36,7 +36,7 @@ Edit Challan
                        </div>
                        <div class="form-group col-4">
                             <label class="form-label">Accussed Name</label>
-                            <input type="text" name="accused_name" value="{{@$challan->accused_name}}" class="form-control" placeholder="Raid Number">                        
+                            <input type="text" name="accused_name" value="{{@$challan->accused_name}}" class="form-control" placeholder="Accussed Name">                        
                     </div>
                        <div class="form-group col-4">
                             <label class="form-label">Nature of Report u/s 173</label>

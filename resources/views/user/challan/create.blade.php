@@ -26,7 +26,7 @@ Create New Challan
                     @csrf
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                     <div class="row">
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label class="form-label">FIR#</label>
                             <select data-placeholder="Enter 'as'" name="fir_id"  class="form-control select-minimum " required data-fouc>
                                 <option></option>
@@ -37,15 +37,15 @@ Create New Challan
                                 </optgroup>
                             </select>                        
                         </div> 
-                        <div class="form-group col-3">
+                        {{-- <div class="form-group col-3">
                             <label class="form-label">I/O Name</label>
                             <input type="text" name="i_o_name" placeholder="E.g.Afzal ASI" class="form-control" required>                        
-                        </div>  
-                        <div class="form-group col-3">
+                        </div>   --}}
+                        <div class="form-group col-4">
                             <label class="form-label">Accused Name</label>
                             <input type="text" name="accused_name" placeholder="Accused Name" class="form-control" required>                        
                         </div> 
-                        <div class="form-group col-3">
+                        <div class="form-group col-4">
                             <label class="form-label">Challan Image</label>
                             <input type="file" name="image" class="form-control" required>
                         </div>

@@ -63,4 +63,8 @@ class Challan extends Model
     {
         return $this->hasMany(Officer::class);
     }
+    public function judge()
+    {
+        return $this->belongsTo(Judges::class);
+    }
 }

@@ -35,7 +35,7 @@ Edit Challan
                        </div>
                         <div class="form-group col-3">
                             <label class="form-label">Accussed Name</label>
-                            <input type="text" name="accused_name" value="{{@$challan->accused_name}}" class="form-control" placeholder="Raid Number">                        
+                            <input type="text" name="accused_name" value="{{@$challan->accused_name}}" class="form-control" placeholder="Accussed Name">                        
                        </div>
                        <div class="form-group col-3">
                             <label class="form-label">Challan Image <a href="{{asset($challan->image)}}"><i class="icon-eye"></i></a></label>
@@ -258,9 +258,14 @@ Edit Challan
                 <h4><b> Court Level Information:</b></h4>
                 <br>
                 <div class="row">
+                    @if($challan->judge_id)
                     <div class="form-group col-3">
                         <label class="form-label">Judge Name#</label>
-                        <select data-placeholder="Enter 'as'" class="form-control select-minimum ">
+                        <input type="text" value="{{@$challan->judge->court}}" class="form-control" readonly>
+                   </div>
+                    <div class="form-group col-3">
+                        <label class="form-label">Judge Name#</label>
+                        <select data-placeholder="Enter 'as'" name="judge_id"  class="form-control select-minimum ">
                             <option></option>
                             <optgroup label="Judge Name">
                                 @foreach(App\Models\Judges::all() as $judge)
@@ -269,15 +274,17 @@ Edit Challan
                             </optgroup>
                         </select>
                    </div>
+                   @endif
                    <div class="form-group col-3">
-                        <label class="form-label">Date of Decision </label>
-                        <input type="text"  class="form-control" value="{{@$challan->date_of_decision?$challan->date_of_decision->format('d M,Y'):''}}">
+                        <label class="form-label">Date of Decision  </label>
+                        <input type="text" name="date_of_decision" readonly class="form-control" value="{{@$challan->date_of_decision}}">
                     </div>
-                   <div class="form-group col-6">
+                   <div class="form-group col-3">
                         <label class="form-label">Decision </label>
-                        <input type="text"class="form-control" placeholder="Decision" value="{{@$challan->decision}}">
+                        <input type="text" name="decision" class="form-control" placeholder="Decision" value="{{@$challan->decision}}">
                     </div>
                 </div>
+                <br>
             </div>
         </div>
         <!-- /basic layout -->

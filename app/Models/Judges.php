@@ -10,4 +10,8 @@ class Judges extends Model
         'name',
         'court',
     ];
+    public function challans()
+    {
+        return $this->hasMany(Challan::class);
+    }
 }
