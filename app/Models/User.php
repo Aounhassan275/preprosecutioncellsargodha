@@ -57,7 +57,7 @@ class User extends Authenticatable
         return (new static)::where('status','active')->get();
     }
     public static function police_station(){
-        return (new static)::where('type','Police Station')->get();
+        return (new static)::where('type','Police Station')->orderBy('name')->get();
     }
     public static function prosecution_branch(){
         return (new static)::where('type','Prosecution Branch')->get();

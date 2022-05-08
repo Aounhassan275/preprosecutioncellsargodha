@@ -15,7 +15,7 @@ class CreateFIRSTable extends Migration
     {
         Schema::create('f_i_r_s', function (Blueprint $table) {
             $table->id();
-            $table->string('fir');
+            $table->integer('fir');
             $table->date('dated');
             $table->string('under_section');
             $table->string('offence');

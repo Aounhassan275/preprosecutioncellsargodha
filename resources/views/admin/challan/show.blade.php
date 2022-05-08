@@ -77,9 +77,11 @@
                                         <th>I/O Contacted to Complainant</th>
                                         <th>
                                             @if($challan->i_o_contacted_to_complainant)
-                                                <span class="badge badge-success">Yes</span>  
-                                            @else 
-                                                <span class="badge badge-danger">No</span>  
+                                                <span class="badge badge-success">Yes</span> 
+                                            @elseif($challan->threedaysFilter() == true && !$challan->i_o_contacted_to_complainant)
+                                                <span class="badge badge-danger">No</span>                                                      
+                                            @elseif($challan->threedaysFilter() == false && !$challan->i_o_contacted_to_complainant) 
+                                                <span class="badge badge-warning">Pending</span>                                                      
                                             @endif
                                         </th>
                                         <th>
@@ -89,10 +91,12 @@
                                     <tr class="border-bottom-primary">
                                         <th>Whether Challan Prepared within 14 Days</th>
                                         <th>
-                                            @if($challan->challan_prepare_within_14_days)
+                                            @if ($challan->challan_prepare_within_14_days)
                                                 <span class="badge badge-success">Yes</span>  
-                                            @else 
-                                                <span class="badge badge-danger">No</span>  
+                                            @elseif($challan->fourteendaysFilter() == true && !$challan->challan_prepare_within_14_days)
+                                                <span class="badge badge-danger">No</span>                                                      
+                                            @elseif($challan->fourteendaysFilter() == false && !$challan->challan_prepare_within_14_days) 
+                                                <span class="badge badge-warning">Pending</span>                                                      
                                             @endif
                                         </th>
                                         <th>

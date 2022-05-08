@@ -31,7 +31,7 @@ Create New FIR
                         </div>
                         <div class="form-group col-4">
                             <label class="form-label">Dated#</label>
-                            <input type="date" name="dated" class="form-control pull-right">                        
+                            <input type="date" name="dated" required class="form-control pull-right">                        
                         </div>
                         <div class="form-group col-4">
                             <label class="form-label">Under Section</label>

@@ -68,15 +68,16 @@
                         <th style="width:auto;">u/s</th>
                         <th style="width:auto;">PS</th>
                         <th style="width:auto;">I.O Contacted to Complainant</th>
-                        <th style="width:auto;">If Challan not prepared within 14 days,whether Interim report prepared wihtin next 3 days</th>
-                        <th style="width:auto;">Nature Of Report u/s 173</th>
                         <th style="width:auto;">Whether Challan Prepared Within 14 Days</th>
+                        <th style="width:auto;">Nature Of Report u/s 173</th>
+                        <th style="width:auto;">If Challan not prepared within 14 days,whether Interim report prepared wihtin next 3 days</th>
                         <th style="width:auto;">File Sent to Investigation & Monitoring Cell after 3 days of Reg. of FIR</th>
                         <th style="width:auto;">Whether Report u/s 173 Crpc is Received at Pre-Prosecution Cell</th>
                         <th style="width:auto;">When Challan/Interim Received By Prosecution Dept.</th>
                         <th style="width:auto;">Challan Status</th>
                         <th style="width:auto;">Date of Receiving of reports u/sec 173 crpc</th>
                         <th style="width:auto;">View</th>
+                        <th style="width:auto;">Created At</th>
                         <th style="width:auto;">Action</th>
                     </tr>
                 </thead>
@@ -91,15 +92,19 @@
                         <td>
                             @if ($challan->i_o_contacted_to_complainant)
                                 <span class="badge badge-success">Yes</span>  
-                            @else
+                            @elseif($challan->threedaysFilter() == true && !$challan->i_o_contacted_to_complainant)
                                 <span class="badge badge-danger">No</span>                                                      
+                            @elseif($challan->threedaysFilter() == false && !$challan->i_o_contacted_to_complainant) 
+                                <span class="badge badge-warning">Pending</span>                                                      
                             @endif
                         </td>
                         <td>
                             @if ($challan->challan_prepare_within_14_days)
                                 <span class="badge badge-success">Yes</span>  
-                            @else
+                            @elseif($challan->fourteendaysFilter() == true && !$challan->challan_prepare_within_14_days)
                                 <span class="badge badge-danger">No</span>                                                      
+                            @elseif($challan->fourteendaysFilter() == false && !$challan->challan_prepare_within_14_days) 
+                                <span class="badge badge-warning">Pending</span>                                                      
                             @endif
                         </td>
                         <td>{{$challan->nature_of_challan}}</td>
@@ -136,6 +141,7 @@
                         </td>
                         <td>{{$challan->date_of_receiving_challan_in_court?@$challan->date_of_receiving_challan_in_court->format('d M,Y'):""}}</td>        
                         <td><a href="{{asset($challan->image)}}"><i class="feather text-info" data-feather="eye"></i></a></td>
+                        <td>{{$challan->created_at->format('d M,Y')}}</td>
                         <td> <a href="{{route('admin.challan.show',$challan->id)}}" class="button"><button class="btn btn-primary"> Detail</button></a></td>
                     </tr>
                     @endforeach

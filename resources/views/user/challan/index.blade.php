@@ -87,9 +87,9 @@ CHALLAN
                 <th>u/s</th>
                 <th>PS</th>
                 <th>I.O Contacted to Complainant</th>
-                <th>If Challan not prepared within 14 days,whether Interim report prepared wihtin next 3 days</th>
-                <th>Nature Of Report u/s 173</th>
                 <th>Whether Challan Prepared Within 14 Days</th>
+                <th>Nature Of Report u/s 173</th>
+                <th>If Challan not prepared within 14 days,whether Interim report prepared wihtin next 3 days</th>
                 <th>File Sent to Investigation & Monitoring Cell after 3 days of Reg. of FIR</th>
                 <th>Whether Report u/s 173 Crpc is Received at Pre-Prosecution Cell</th>
                 <th>When Challan/Interim Received By Prosecution Branch</th>
@@ -110,15 +110,19 @@ CHALLAN
                 <td>
                     @if ($challan->i_o_contacted_to_complainant)
                         <span class="badge badge-success">Yes</span>  
-                    @else
+                    @elseif($challan->threedaysFilter() == true && !$challan->i_o_contacted_to_complainant)
                         <span class="badge badge-danger">No</span>                                                      
+                    @elseif($challan->threedaysFilter() == false && !$challan->i_o_contacted_to_complainant) 
+                        <span class="badge badge-warning">Pending</span>                                                      
                     @endif
                 </td>
                 <td>
                     @if ($challan->challan_prepare_within_14_days)
                         <span class="badge badge-success">Yes</span>  
-                    @else
+                    @elseif($challan->fourteendaysFilter() == true && !$challan->challan_prepare_within_14_days)
                         <span class="badge badge-danger">No</span>                                                      
+                    @elseif($challan->fourteendaysFilter() == false && !$challan->challan_prepare_within_14_days) 
+                        <span class="badge badge-warning">Pending</span>                                                      
                     @endif
                 </td>
                 <td>{{$challan->nature_of_challan}}</td>

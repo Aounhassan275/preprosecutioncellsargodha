@@ -34,11 +34,11 @@ FIR
                 <th>Offence</th>
                 <th>PS</th>
                 <th>View</th>
-                {{-- <th>Action</th> --}}
+                <th>Action</th>
             </tr> 
         </thead>
         <tbody>
-            @foreach (Auth::user()->firs as $key => $fir)
+            @foreach ($firs as $key => $fir)
             <tr> 
                 <td>{{$key+1}}</td>
                 <td>{{$fir->fir."/".$fir->dated->format('y')}}</td>
@@ -47,14 +47,14 @@ FIR
                 <td>{{$fir->offence}}</td>
                 <td>{{$fir->police_station}}</td>
                 <td><a href="{{asset($fir->image)}}"><i class="icon-eye"></i></a></td>
-                {{-- <td class="text-center">
-                    <a href="{{route('user.fir.edit',$fir->id)}}" target="_blank"><i class="icon-pencil7"></i></a>
+                <td class="text-center">
+                    {{-- <a href="{{route('user.fir.edit',$fir->id)}}" target="_blank"><i class="icon-pencil7"></i></a> --}}
                     <form action="{{route('user.fir.destroy',$fir->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button class="btn"><i class="icon-trash"></i></button>
                     </form>
-                </td> --}}
+                </td>
             </tr>
         @endforeach
         </tbody>

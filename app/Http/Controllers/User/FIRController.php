@@ -20,7 +20,8 @@ class FIRController extends Controller
     {
         if(Auth::user()->type == "Police Station")
         {
-            return view('user.fir.index');
+            $firs = FIR::where('user_id',Auth::user()->id)->orderBy('fir', 'asc')->get();   
+            return view('user.fir.index',compact('firs'));
         }
         toastr()->warning('Unauthorized');
         return redirect()->route('user.dashboard.index');
@@ -114,8 +115,11 @@ class FIRController extends Controller
      * @param  \App\Models\FIR  $fIR
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FIR $fIR)
+    public function destroy($id)
     {
-        //
+        $fir = FIR::find($id);
+        $fir->delete();        
+        toastr()->success('FIR is Deleted Successfully');
+        return redirect()->back();
     }
 }

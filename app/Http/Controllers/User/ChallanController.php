@@ -43,8 +43,10 @@ class ChallanController extends Controller
             {
                 $challans = Challan::where('fir',$request->fir)
                             ->whereYear('dated',$request->dated)
+                            // ->where('user_id',Auth::user()->id)
+                            ->where('police_station',$request->police_station)
                             ->orWhere('under_section',$request->under_section)
-                            ->where('police_station',$request->police_station)->get();
+                            ->orderBy('fir', 'asc')->get();
                 $data['fir'] = $request->fir;
                 $data['dated'] = $request->dated;
                 $data['under_section'] = $request->under_section;
@@ -52,7 +54,7 @@ class ChallanController extends Controller
             }
             else
             {
-                $challans = Auth::user()->challans;
+                $challans = Challan::where('user_id',Auth::user()->id)->orderBy('fir','asc')->get();
             }
             return view('user.challan.index',compact('challans','data','years'));
         }elseif(Auth::user()->type == "Prosecution Branch")
@@ -63,7 +65,8 @@ class ChallanController extends Controller
                             ->orWhere('fir',$request->fir)
                             ->whereYear('dated',$request->dated)
                             ->orWhere('under_section',$request->under_section)
-                            ->orWhere('police_station',$request->police_station)->get();
+                            ->orWhere('police_station',$request->police_station)
+                            ->orderBy('fir', 'asc')->get();
                 $data['fir'] = $request->fir;
                 $data['dated'] = $request->dated;
                 $data['under_section'] = $request->under_section;
@@ -71,7 +74,7 @@ class ChallanController extends Controller
             }
             else
             {
-                $challans = Challan::where('file_send_after_3_days',1)->get();
+                $challans = Challan::where('file_send_after_3_days',1)->orderBy('fir', 'asc')->get();
             }
             return view('prosecution.challan.index',compact('challans','data','years'));
         }else{
@@ -81,7 +84,8 @@ class ChallanController extends Controller
                             ->whereYear('dated',$request->dated)
                             ->orWhere('fir',$request->fir)
                             ->orWhere('under_section',$request->under_section)
-                            ->orWhere('police_station',$request->police_station)->get();
+                            ->orWhere('police_station',$request->police_station)
+                            ->orderBy('fir', 'asc')->get();
                 $data['fir'] = $request->fir;
                 $data['dated'] = $request->dated;
                 $data['under_section'] = $request->under_section;
@@ -89,7 +93,7 @@ class ChallanController extends Controller
             }
             else
             {
-                $challans = Challan::whereNotNull('challan_passed_date')->get();
+                $challans = Challan::whereNotNull('challan_passed_date')->orderBy('fir', 'asc')->get();
             }
             return view('court.challan.index',compact('challans','data','years'));
         }
@@ -108,13 +112,15 @@ class ChallanController extends Controller
                             ->whereYear('dated',$request->dated)
                             ->where('challan_prepare_within_14_days',0)
                             ->orWhere('under_section',$request->under_section)
-                            ->where('police_station',$request->police_station)->get();
+                            ->where('police_station',$request->police_station)
+                            ->orderBy('fir', 'asc')->get();
                 $data['fir'] = $request->fir;
                 $data['dated'] = $request->dated;
                 $data['under_section'] = $request->under_section;
                 $data['police_station'] = $request->police_station;
             }else{
-                $challans = Auth::user()->challans->where('challan_prepare_within_14_days',0);
+                $challans = Challan::where('user_id',Auth::user()->id)->where('challan_prepare_within_14_days',0)->orderBy('fir','asc')->get();
+
             }
             return view('user.challan.pending',compact('challans','data','years'));
         }elseif(Auth::user()->type == "Prosecution Branch")
@@ -127,7 +133,8 @@ class ChallanController extends Controller
                             ->whereNull('challan_passed_date')
                             ->orWhere('fir',$request->fir)
                             ->orWhere('under_section',$request->under_section)
-                            ->orWhere('police_station',$request->police_station)->get();
+                            ->orWhere('police_station',$request->police_station)
+                            ->orderBy('fir', 'asc')->get();
                 $data['fir'] = $request->fir;
                 $data['dated'] = $request->dated;
                 $data['under_section'] = $request->under_section;
@@ -135,7 +142,8 @@ class ChallanController extends Controller
             }else{
                 $challans = Challan::where('file_send_after_3_days',1)
                 ->whereNull('challan_passed_date')
-                ->whereNull('objection_date')->get();
+                ->whereNull('objection_date')
+                ->orderBy('fir', 'asc')->get();
             }
             return view('prosecution.challan.pending',compact('challans','data','years'));
         }else{
@@ -146,7 +154,8 @@ class ChallanController extends Controller
                             ->orWhere('fir',$request->fir)
                             ->whereNull('date_of_receiving_challan_in_court')
                             ->orWhere('under_section',$request->under_section)
-                            ->orWhere('police_station',$request->police_station)->get();
+                            ->orWhere('police_station',$request->police_station)
+                            ->orderBy('fir', 'asc')->get();
                 $data['fir'] = $request->fir;
                 $data['dated'] = $request->dated;
                 $data['under_section'] = $request->under_section;
@@ -154,7 +163,9 @@ class ChallanController extends Controller
             }
             else
             {
-                $challans = Challan::whereNotNull('challan_passed_date')->whereNull('date_of_receiving_challan_in_court')->get();
+                $challans = Challan::whereNotNull('challan_passed_date')
+                            ->whereNull('date_of_receiving_challan_in_court')
+                            ->orderBy('fir', 'asc')->get();
             }
             return view('court.challan.pending',compact('challans','data','years'));
         }
@@ -171,7 +182,8 @@ class ChallanController extends Controller
                         ->where('challan_prepare_within_14_days',1)
                         ->where('challan_receive_in_branch',0)
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->where('police_station',$request->police_station)
+                        ->orderBy('fir', 'asc')->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -181,9 +193,9 @@ class ChallanController extends Controller
         {
             if(!$request->fir)
             {
-                $challans = Auth::user()->challans
-                ->where('challan_prepare_within_14_days',1)
-                ->where('challan_receive_in_branch',0);
+                $challans = Challan::where('user_id',Auth::user()->id)
+                    ->where('challan_prepare_within_14_days',1)
+                    ->where('challan_receive_in_branch',0)->orderBy('fir','asc')->get();
             }
             return view('user.challan.in_process',compact('challans','data','years'));
         }elseif(Auth::user()->type == "Prosecution Branch")
@@ -206,7 +218,8 @@ class ChallanController extends Controller
                             ->whereYear('dated',$request->dated)
                             ->whereNotNull('challan_passed_date')
                             ->orWhere('under_section',$request->under_section)
-                            ->where('police_station',$request->police_station)->get();
+                            ->where('police_station',$request->police_station)
+                            ->orderBy('fir', 'asc')->get();
                 $data['fir'] = $request->fir;
                 $data['dated'] = $request->dated;
                 $data['under_section'] = $request->under_section;
@@ -214,8 +227,8 @@ class ChallanController extends Controller
             }
             else
             {
-                $challans = Auth::user()->challans
-                ->whereNotNull('challan_passed_date');
+                $challans = Challan::where('user_id',Auth::user()->id)
+                    ->whereNotNull('challan_passed_date')->orderBy('fir','asc')->get();
             }
             return view('user.challan.passed',compact('challans','data','years'));
         }elseif(Auth::user()->type == "Prosecution Branch")
@@ -226,13 +239,15 @@ class ChallanController extends Controller
                             ->whereYear('dated',$request->dated)
                             ->orWhere('fir',$request->fir)
                             ->orWhere('under_section',$request->under_section)
-                            ->orWhere('police_station',$request->police_station)->get();
+                            ->orWhere('police_station',$request->police_station)
+                            ->orderBy('fir', 'asc')->get();
                 $data['fir'] = $request->fir;
                 $data['dated'] = $request->dated;
                 $data['under_section'] = $request->under_section;
                 $data['police_station'] = $request->police_station;
             }else{
-                $challans =  Challan::whereNotNull('challan_passed_date')->get();
+                $challans =  Challan::whereNotNull('challan_passed_date')
+                                ->orderBy('fir', 'asc')->get();
             }
             return view('prosecution.challan.passed',compact('challans','data','years'));
         }else{
@@ -250,8 +265,9 @@ class ChallanController extends Controller
                         ->whereYear('dated',$request->dated)
                         ->whereNotNull('objection_date')
                         ->whereNull('challan_passed_date')
+                        ->where('police_station',$request->police_station)
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->orderBy('fir', 'asc')->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -261,15 +277,19 @@ class ChallanController extends Controller
         {
             if(!$request->fir)
             {
-                $challans = Auth::user()->challans
-                ->whereNotNull('objection_date')->whereNull('challan_passed_date');
+                $challans = Challan::where('user_id',Auth::user()->id)
+                        ->whereNotNull('objection_date')->whereNull('challan_passed_date')
+                        ->orderBy('fir','asc')->get();
+                
             }
             return view('user.challan.objection',compact('challans','data','years'));
         }elseif(Auth::user()->type == "Prosecution Branch")
         {
             if(!$request->fir)
             {
-                $challans = Challan::whereNotNull('objection_date')->whereNull('challan_passed_date')->get();
+                $challans = Challan::whereNotNull('objection_date')
+                                    ->whereNull('challan_passed_date')
+                                    ->orderBy('fir', 'asc')->get();
             }
             return view('prosecution.challan.objection',compact('challans','data','years'));
         }else{
@@ -287,7 +307,8 @@ class ChallanController extends Controller
                         ->whereYear('dated',$request->dated)
                         ->whereNotNull('date_of_receiving_challan_in_court')
                         ->orWhere('under_section',$request->under_section)
-                        ->where('police_station',$request->police_station)->get();
+                        ->where('police_station',$request->police_station)
+                        ->orderBy('fir', 'asc')->get();
             $data['fir'] = $request->fir;
             $data['dated'] = $request->dated;
             $data['under_section'] = $request->under_section;
@@ -297,7 +318,9 @@ class ChallanController extends Controller
         {
             if(!$request->fir)
             {
-                $challans = Auth::user()->challans->whereNotNull('date_of_receiving_challan_in_court');
+                $challans = Challan::where('user_id',Auth::user()->id)
+                        ->whereNotNull('date_of_receiving_challan_in_court')
+                        ->orderBy('fir','asc')->get();
             }
             return view('user.challan.court',compact('challans','data','years'));
         }elseif(Auth::user()->type == "Prosecution Branch")

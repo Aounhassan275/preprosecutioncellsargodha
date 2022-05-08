@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\ImageHelper;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Challan extends Model
@@ -66,5 +67,27 @@ class Challan extends Model
     public function judge()
     {
         return $this->belongsTo(Judges::class);
+    }
+    public function threedaysFilter()
+    {
+        $days = Carbon::today()->diffInDays($this->dated);
+        if($days > 3)
+        {
+            return true;
+        }else{
+            return false;
+        }
+        // return ;
+    }
+    public function fourteendaysFilter()
+    {
+        $days = Carbon::today()->diffInDays($this->dated);
+        if($days > 14)
+        {
+            return true;
+        }else{
+            return false;
+        }
+        // return ;
     }
 }

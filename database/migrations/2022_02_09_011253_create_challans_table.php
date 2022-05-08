@@ -15,7 +15,7 @@ class CreateChallansTable extends Migration
     {
         Schema::create('challans', function (Blueprint $table) {
             $table->id();
-            $table->string('fir');
+            $table->integer('fir');
             $table->date('dated');
             $table->string('under_section');
             $table->string('police_station');
