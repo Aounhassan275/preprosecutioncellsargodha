@@ -77,6 +77,7 @@ Create New Challan
                                 <option value="Interim Report">Interim Report</option>
                                 <option value="Untrace Report">Untrace Report</option>
                                 <option value="Cancellation Report">Cancellation Report</option>
+                                <option value="Under Trail Challan">Under Trail Challan</option>
                             </select>
                         </div>
                     </div>

@@ -90,4 +90,19 @@ class Challan extends Model
         }
         // return ;
     }
+    public static function underTrailChallanPendency()
+    {
+        $challans = (new static)::where('nature_of_challan','Under Trail Challan')->get();
+        $undertrailChallan = [];
+        foreach($challans as $challan)
+        {
+            $days = Carbon::today()->diffInDays($challan->dated);
+            if($days > 12)
+            {
+                $undertrailChallan[] = $challan;
+            }
+
+        }
+        return $undertrailChallan;
+    }
 }

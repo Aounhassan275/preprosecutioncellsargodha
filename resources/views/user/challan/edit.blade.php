@@ -51,7 +51,7 @@ Edit Challan
                                     <option @if($challan->nature_of_challan == "Interim Report") selected @endif value="Interim Report">Interim Report</option>
                                     <option @if($challan->nature_of_challan == "Untrace Report") selected @endif value="Untrace Report">Untrace Report</option>
                                     <option @if($challan->nature_of_challan == "Cancellation Report") selected @endif value="Cancellation Report">Cancellation Report</option>
-                               
+                                    <option @if($challan->nature_of_challan == "Under Trail Challan") selected @endif  value="Under Trail Challan">Under Trail Challan</option>
                                 </optgroup>
                             </select> 
                         </div>

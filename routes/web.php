@@ -58,6 +58,7 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.','namespace' => 'Admin'], funct
     Route::get('challan/objection','ChallanController@ChallanObjection')->name('challan.objection');
     Route::get('challan/court','ChallanController@Challancourt')->name('challan.court');
     Route::get('challan/passed','ChallanController@ChallanPassed')->name('challan.passed');
+    Route::get('challan/under_trail_challans','ChallanController@under_trail_challans')->name('challan.under_trail_challans');
     Route::resource('challan', 'ChallanController');  
    });
 });

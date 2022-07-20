@@ -262,6 +262,11 @@ class ChallanController extends Controller
         }
         return view('admin.challan.court',compact('challans','data','years'));
     }
+    public function under_trail_challans(Request $request)
+    {
+        $challans = Challan::underTrailChallanPendency();
+        return view('admin.challan.under_trail_challans',compact('challans'));
+    }
 
     /**
      * Show the form for creating a new resource.
